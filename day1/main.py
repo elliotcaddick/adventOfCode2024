@@ -18,3 +18,18 @@ def part_one(filename):
     return total_distance
 
 # print(part_one("day1/input/puzzle.txt"))
+
+def part_two(filename):
+    left_list = []
+    right_list = []
+    similarity_score = 0
+    with open(filename) as file:
+        for line in file:
+            left_nb, right_nb = line.strip().split()
+            right_list.append(int(right_nb))
+            left_list.append(int(left_nb))
+    for nb in left_list:
+        similarity_score += nb * right_list.count(nb)
+    return similarity_score
+
+# print(part_two("day1/input/puzzle.txt"))
