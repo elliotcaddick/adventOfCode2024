@@ -13,7 +13,7 @@
 
 ### Quest 4
 - Part 1 : $${\color{green}OK}$$
-- Part 2 : $${\color{grey}N/A}$$
+- Part 2 : $${\color{green}OK}$$
 
 ### Quest 5
 - Part 1 : $${\color{grey}N/A}$$
