@@ -10,15 +10,10 @@ def part_one(filename):
         for line in file:
             line = line.strip()
             if "|" in line:
-                x, y = line.split('|')
-                x = int(x)
-                y = int(y)
-                if x in page_ordering_rules:
-                    page_ordering_rules[x].append(y)
-                else:
-                    page_ordering_rules[x] = [y]
+                x, y = map(int, line.split('|'))
+                page_ordering_rules.setdefault(x, []).append(y)
             elif "," in line:
-                updates.append([int(e) for e in line.split(',')])
+                updates.append(list(map(int, line.split(','))))
                 
     def is_correctly_ordered(page, history):
         if page in page_ordering_rules:
@@ -86,6 +81,7 @@ def part_two(filename):
             history.append(page)
     
     middle_pages = []
+
     for update in to_correct:
         i = 0
         history = []
@@ -115,7 +111,7 @@ def part_two(filename):
                 else:
                     history.append(update[i])
                     i += 1
-    
+
     for update in to_correct:
         middle_pages.append(update[len(update)//2])        
     
