@@ -134,4 +134,4 @@ def part_two(filename):
     return total
 
     
-print(f"Part 2: {part_two("day6/input/puzzle.txt")}")
+# print(f"Part 2: {part_two("day6/input/puzzle.txt")}")

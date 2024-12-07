@@ -1,6 +1,6 @@
 # Advent Of Code 2024
 
-STARS: 12/50 ⭐ 
+STARS: 13/50 ⭐ 
 
 ### Quest 1
 - Part 1 : $${\color{green}OK}$$
@@ -27,7 +27,7 @@ STARS: 12/50 ⭐
 - Part 2 : $${\color{green}OK}$$
 
 ### Quest 7
-- Part 1 : $${\color{grey}N/A}$$
+- Part 1 : $${\color{green}OK}$$
 - Part 2 : $${\color{grey}N/A}$$
 
 ### Quest 8
