@@ -21,7 +21,7 @@ def part_one(filename):
 
     return nb_safe_reports
 
-print(f"Part 1: {part_one("day2/input/puzzle.txt")}")
+# print(f"Part 1: {part_one("day2/input/puzzle.txt")}")
 
 def is_safe(levels):
     return check_levels(levels, increasing=True) or check_levels(levels, increasing=False)
@@ -48,4 +48,4 @@ def part_two(filename):
 
     return nb_safe_reports
 
-print(f"Part 2: {part_two("day2/input/puzzle.txt")}")
+# print(f"Part 2: {part_two("day2/input/puzzle.txt")}")

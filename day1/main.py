@@ -21,7 +21,7 @@ def part_one(filename):
 
     return total_distance
 
-print(part_one("day1/input/puzzle.txt"))
+# print(part_one("day1/input/puzzle.txt"))
 
 def part_two(filename):
     left_list = []
@@ -39,4 +39,4 @@ def part_two(filename):
     
     return similarity_score
 
-print(part_two("day1/input/puzzle.txt"))
+# print(part_two("day1/input/puzzle.txt"))

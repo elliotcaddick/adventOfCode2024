@@ -18,7 +18,7 @@ def part_one(filename):
     return result
 
 
-print(f"Part 1: {part_one("day3/input/puzzle.txt")}")
+# print(f"Part 1: {part_one("day3/input/puzzle.txt")}")
 
 
 def part_two(filename):
@@ -41,4 +41,4 @@ def part_two(filename):
 
     return result
 
-print(f"Part 2: {part_two("day3/input/puzzle.txt")}")
+# print(f"Part 2: {part_two("day3/input/puzzle.txt")}")
