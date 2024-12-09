@@ -153,4 +153,4 @@ def part_two(filename):
     return len(unique_antinodes)
 
 
-print(f"Part 2: {part_two("day8/input/puzzle.txt")}")
+# print(f"Part 2: {part_two("day8/input/puzzle.txt")}")
