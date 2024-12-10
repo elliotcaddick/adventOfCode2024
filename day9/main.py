@@ -84,4 +84,4 @@ def part_two(filename):
         res += sum(k*i for i in range(start, end))
     return res
 
-print(f"Part 2: {part_two("input/puzzle.txt")}")
+# print(f"Part 2: {part_two("input/puzzle.txt")}")

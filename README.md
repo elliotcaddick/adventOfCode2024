@@ -1,6 +1,6 @@
 # Advent Of Code 2024
 
-18/50 ⭐ 
+19/50 ⭐ 
 
 ### Quest 1
 - Part 1 : $${\color{green}OK}$$
