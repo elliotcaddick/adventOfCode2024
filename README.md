@@ -1,6 +1,6 @@
 # Advent Of Code 2024
 
-21/50 ⭐ 
+22/50 ⭐ 
 
 ### Quest 1
 - Part 1 : $${\color{green}OK}$$
@@ -44,7 +44,7 @@
 
 ### Quest 11
 - Part 1 : $${\color{green}OK}$$
-- Part 2 : $${\color{grey}N/A}$$
+- Part 2 : $${\color{green}OK}$$
 
 ### Quest 12
 - Part 1 : $${\color{grey}N/A}$$
