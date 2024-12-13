@@ -15,17 +15,14 @@ def part_one(filename):
     claw_machines = []
     
     def parse_coordinates(line):
-        coords = line.split(':')[1].split(',')
-        x, y = 0, 0
-        for coord in coords:
-            if "+" in coord:
-                parts = coord.split('+')
-            elif "=" in coord:
-                parts = coord.split('=')
-            if "X" in parts[0]:
-                x = int(parts[1])
-            elif "Y" in parts[0]:
-                y = int(parts[1])
+        parts = line.split(':')[1].replace('+', '=').split(',')
+        x = y = 0
+        for coord in parts:
+            key, value = coord.split('=')
+            if key.strip() == "X":
+                x = int(value)
+            elif key.strip() == "Y":
+                y = int(value)
         return x, y
     
     with open(filename) as file:
@@ -44,17 +41,18 @@ def part_one(filename):
     
     total_tokens = 0
     for machine in claw_machines:
-        x, y = 0, 0
-        is_found = False
-        for i in range(1, 101):
-            for j in range(1, 101):
-                if i * machine.A[0] + j * machine.B[0] == machine.prize[0]\
-                    and i * machine.A[1] + j * machine.B[1] == machine.prize[1]:
-                        total_tokens += (i * A_COST) + (j * B_COST)
-                        is_found = True
-                        break
-            if is_found:
+        ax, ay = machine.A
+        bx, by = machine.B
+        px, py = machine.prize
+        found = False
+        for i in range(101):
+            if found:
                 break
+            for j in range(101):
+                if i * ax + j * bx == px and i * ay + j * by == py:
+                    total_tokens += i * A_COST + j * B_COST
+                    found = True
+                    break
     
     return total_tokens
  
