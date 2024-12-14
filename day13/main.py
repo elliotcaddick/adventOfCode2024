@@ -125,4 +125,4 @@ def part_two(filename):
     return total_tokens
 
 
-print(f"Part 2: {part_two("input/puzzle.txt")}")
+# print(f"Part 2: {part_two("input/puzzle.txt")}")
