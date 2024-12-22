@@ -6,6 +6,7 @@ from math import trunc
 
 def part_one(filename):
     registers = {}
+    
     with open(filename) as file:
         for line in file:
             line = line.strip()
@@ -36,7 +37,7 @@ def part_one(filename):
     
     # Opcode 3
     def jnz(operand):
-        if operand == 0:
+        if registers["A"] == 0:
             return None
         else:
             return operand
@@ -104,8 +105,15 @@ def part_one(filename):
     return final_str[:-1]
 
 
-# print(f"Part 1: {part_one("day19/input/puzzle.txt")}")
+""" print(f"Test 1: {part_one("day17/test/sample2.txt")}")
+print(f"Test 2: {part_one("day17/test/sample3.txt")}")
+print(f"Test 3: {part_one("day17/test/sample4.txt")}")
+print(f"Test 4: {part_one("day17/test/sample5.txt")}")
+print(f"Test 5: {part_one("day17/test/sample6.txt")}") """
+print(f"=== TEST PART 1 ===")
+print(f"{part_one("day17/test/sample1.txt")}")
+print(f"=== PUZZLE RESULT ===")
+print(f"{part_one("day17/input/puzzle.txt")}")
 
 
-
-#print(f"Part 2: {part_two("day19/input/puzzle.txt")}")
+#print(f"Part 2: {part_two("day17/input/puzzle.txt")}")
