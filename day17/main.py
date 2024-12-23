@@ -110,10 +110,62 @@ print(f"Test 2: {part_one("day17/test/sample3.txt")}")
 print(f"Test 3: {part_one("day17/test/sample4.txt")}")
 print(f"Test 4: {part_one("day17/test/sample5.txt")}")
 print(f"Test 5: {part_one("day17/test/sample6.txt")}") """
-print(f"=== TEST PART 1 ===")
+""" print(f"=== [PART 1] TEST ===")
 print(f"{part_one("day17/test/sample1.txt")}")
-print(f"=== PUZZLE RESULT ===")
-print(f"{part_one("day17/input/puzzle.txt")}")
+print(f"=== [PART 1] PUZZLE RESULT ===")
+print(f"{part_one("day17/input/puzzle.txt")}") """
+
+import re
+
+def part_two(filename):
+    with open(filename) as f:
+        inp = f.read().split("\n\n")
+        regs = [int(re.findall(r"\d+", i)[0]) for i in inp[0].split("\n")]
+        prog = [int(i) for i in re.findall(r"\d+", inp[1])]
+
+    def opcode(reg, prog):
+        i = 0
+        output = []
+
+        while True:
+            op= prog[i]
+            li = prog[i+1]
+
+            co = li
+            if 3 <= co <= 6:
+                co = reg[co-4]
+            
+            if op == 0:
+                reg[0] //= (2 ** co)
+            elif op == 1:
+                reg[1] ^= li
+            elif op == 2:
+                reg[1] = co % 8
+            elif op == 3:
+                if reg[0] != 0:
+                    i = li - 2
+            elif op == 4:
+                reg[1] = reg[1] ^ reg[2]
+            elif op == 5: # out
+                output += [ co % 8 ]
+            elif op == 6: # bdv
+                reg[1] = reg[0] // 2 ** co  
+            elif op == 7: # cdv
+                reg[2] = reg[0] // 2 ** co 
+            
+            i += 2
+            if i >= len(prog):
+                break
+        
+        return output, reg
 
 
-#print(f"Part 2: {part_two("day17/input/puzzle.txt")}")
+
+    
+
+        
+
+print(f"=== [PART 2] TEST ===")
+print(f"{part_two("day17/test/sample7.txt")}")
+print(f"=== [PART 2] PUZZLE RESULT ===")
+print(f"Part 2: {part_two("day17/input/puzzle.txt")}")

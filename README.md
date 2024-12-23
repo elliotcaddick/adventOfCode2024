@@ -68,7 +68,7 @@
 
 ### Quest 17
 - Part 1 : $${\color{green}OK}$$
-- Part 2 : $${\color{grey}N/A}$$
+- Part 2 : $${\color{red}KO}$$
 
 ### Quest 18
 - Part 1 : $${\color{grey}N/A}$$
