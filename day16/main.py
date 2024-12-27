@@ -139,6 +139,6 @@ def part_two(filename: str, verbose=False):
 
 print(f"=== [PART 2] TEST ===")
 print(f"Test 1: {part_two("day16/test/sample1.txt")}")
-print(f"Test 2: {part_two("day16/test/sample2.txt")}")
+print(f"Test 2: {part_two("day16/test/sample2.txt")}")  
 print(f"=== [PART 2] PUZZLE RESULT ===")
 print(f"Puzzle result: {part_two("day16/input/puzzle.txt")}")
