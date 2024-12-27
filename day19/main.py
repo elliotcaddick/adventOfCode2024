@@ -41,46 +41,39 @@ def part_one(filename):
 
 # print(f"Part 1: {part_one("day19/input/puzzle.txt")}")
 
+import time
+from collections import deque
 
 def part_two(filename):
-    # Read towels and towel sequences from the file
-    with open(filename) as file:
-        lines = [line.strip() for line in file if line.strip()]
-    towels = [p.strip() for p in lines[0].split(',')]
-    towel_seq = lines[1:]
+    start_time = time.time()
 
-    # Find all combinations using memoization
-    def find_all_towel_combinations(target, towels):
-        memo = {}
+    result = []
+    with open(filename) as f:
+        for line in f:
+            l = line.strip()
+            result.append(l)
 
-        def helper(remaining):
-            if remaining in memo:  # Check memoized results
-                return memo[remaining]
-            if not remaining:  # Base case: target is fully constructed
-                return [[]]
-            
-            combinations = []
-            for towel in towels:
-                if remaining.startswith(towel):
-                    sub_combinations = helper(remaining[len(towel):])
-                    for sub_combination in sub_combinations:
-                        combinations.append([towel] + sub_combination)
-            
-            memo[remaining] = combinations
-            return combinations
-        
-        return helper(target)
+    input = set(result[0].split(', ')), result[2:]
 
-    # Process towel sequences and count total arrangements
-    total_arrangement = 0
-    results = {}
-    for sequence in towel_seq:
-        combinations = find_all_towel_combinations(sequence, towels)
-        results[sequence] = combinations
-        total_arrangement += len(combinations)
+    def design_possible_count(towels, design, cache):
+        if design == "":
+            return 1
 
-    return total_arrangement
+        if (c := cache.get(design, None)) is not None:
+            return c
+
+        result = 0
+        for towel in towels:
+            if towel == design[:len(towel)]:
+                result += design_possible_count(towels, design[len(towel):], cache)
+
+        cache[design] = result
+        return result
+
+    return sum(design_possible_count(input[0], d, {}) for d in input[1])
 
 
-
+print(f"=== [PART 2] TEST ===")
+print(f"{part_two("day19/test/sample.txt")}")
+print(f"=== [PART 2] PUZZLE RESULT ===")
 print(f"Part 2: {part_two("day19/input/puzzle.txt")}")
