@@ -115,55 +115,74 @@ print(f"{part_one("day17/test/sample1.txt")}")
 print(f"=== [PART 1] PUZZLE RESULT ===")
 print(f"{part_one("day17/input/puzzle.txt")}") """
 
-import re
-
 def part_two(filename):
-    with open(filename) as f:
-        inp = f.read().split("\n\n")
-        regs = [int(re.findall(r"\d+", i)[0]) for i in inp[0].split("\n")]
-        prog = [int(i) for i in re.findall(r"\d+", inp[1])]
+    with open(filename, 'r') as f:
+        reg, prog = f.read().split('\n\n')
 
-    def opcode(reg, prog):
-        i = 0
-        output = []
+    prog = list(map(int, prog.split(': ')[1].split(',')))
+    rega, regb, regc = (int(line.split(': ')[1]) for line in reg.splitlines())
 
-        while True:
-            op= prog[i]
-            li = prog[i+1]
+    def get_combo(oper, rega, regb, regc):
+        if 0 <= oper <= 3:
+            return oper
+        if oper == 4:
+            return rega
+        if oper == 5:
+            return regb
+        if oper == 6:
+            return regc
 
-            co = li
-            if 3 <= co <= 6:
-                co = reg[co-4]
-            
-            if op == 0:
-                reg[0] //= (2 ** co)
-            elif op == 1:
-                reg[1] ^= li
-            elif op == 2:
-                reg[1] = co % 8
-            elif op == 3:
-                if reg[0] != 0:
-                    i = li - 2
-            elif op == 4:
-                reg[1] = reg[1] ^ reg[2]
-            elif op == 5: # out
-                output += [ co % 8 ]
-            elif op == 6: # bdv
-                reg[1] = reg[0] // 2 ** co  
-            elif op == 7: # cdv
-                reg[2] = reg[0] // 2 ** co 
-            
-            i += 2
-            if i >= len(prog):
+    def run(prog, rega, regb, regc):
+        ip = 0
+        out = []
+        while ip < len(prog):
+            oper = prog[ip+1]
+            combo = get_combo(oper, rega, regb, regc)
+            match prog[ip]:
+                case 0:
+                    rega //= 2**combo
+                case 1:
+                    regb ^= oper
+                case 2:
+                    regb = combo%8
+                case 3:
+                    if rega:
+                        ip = oper
+                        continue
+                case 4:
+                    regb ^= regc
+                case 5:
+                    out.append(combo%8)
+                case 6:
+                    regb = rega//2**combo
+                case 7:
+                    regc = rega//2**combo
+            ip += 2
+        return out
+
+    print(','.join(map(str, run(prog, rega, regb, regc))))
+
+    rega = 0
+    j = 1
+    istart = 0
+    while j <= len(prog) and j >= 0:
+        rega <<= 3
+        for i in range(istart, 8):
+            if prog[-j:] == run(prog, rega+i, regb, regc):
                 break
-        
-        return output, reg
-
-
-
+        else:
+            j -= 1
+            rega >>= 3
+            istart = rega%8+1
+            rega >>= 3
+            continue
+        j += 1
+        rega += i
+        istart = 0
+    
+    print(rega)
     
 
-        
 
 print(f"=== [PART 2] TEST ===")
 print(f"{part_two("day17/test/sample7.txt")}")
